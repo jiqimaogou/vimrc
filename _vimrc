@@ -2,7 +2,6 @@ set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 behave mswin
-
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -27,14 +26,16 @@ function MyDiff()
   endif
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
+
 if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 18
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    "set guifont=Consolas:h11:cANSI
-    set guifont=Inconsolata:h22:cANSI
+	" set guifont=Consolas:h11:cANSI
+    " set guifont=Inconsolata:h22:cANSI
+    set guifont=Anonymous\ Pro:h22:cANSI
   endif
 endif
 
@@ -65,7 +66,6 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'YankRing.vim' 
 let g:yankring_window_auto_close = 0
 
-" Plugin 'yankstack'
 " vim-easyclip
 " Plugin 'https://github.com/svermeulen/vim-easyclip.git'
 
@@ -121,9 +121,16 @@ Plugin 'taglist.vim'
 
 " minibufexpl
 Plugin 'minibufexpl.vim'
-
 " xptemplate
 Plugin 'xptemplate'
+Bundle 'djoshea/vim-autoread'
+Plugin 'https://github.com/xolox/vim-misc.git'
+Plugin 'easytags.vim'
+
+" ctrlp
+Plugin 'ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+let g:ctrlp_extensions = ['funky']
 
 " Solarized
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
