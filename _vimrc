@@ -35,7 +35,8 @@ if has("gui_running")
   elseif has("gui_win32")
 	" set guifont=Consolas:h11:cANSI
     " set guifont=Inconsolata:h22:cANSI
-    set guifont=Anonymous\ Pro:h22:cANSI
+    " set guifont=Anonymous\ Pro:h22:cANSI
+    set guifont=BPmono:h22:cANSI
   endif
 endif
 
@@ -117,23 +118,37 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'The-NERD-tree'
 
 " taglist
-Plugin 'taglist.vim'
+" Plugin 'taglist.vim'
+Plugin 'https://github.com/majutsushi/tagbar.git'
 
 " minibufexpl
-Plugin 'minibufexpl.vim'
+Plugin 'minibufexpl.vim' 
+" To enable the optional mapping of <C-TAB> and <C-S-TAB> to a 
+" function that will bring up the next or previous buffer in the
+" current window, you can put the following into your .vimrc: 
+let g:miniBufExplMapCTabSwitchBufs = 1
+
 " xptemplate
 Plugin 'xptemplate'
 Bundle 'djoshea/vim-autoread'
 Plugin 'https://github.com/xolox/vim-misc.git'
-Plugin 'easytags.vim'
-
+Plugin 'https://github.com/xolox/vim-easytags.git' 
+let g:easytags_auto_update = 0
+Plugin 'https://github.com/brookhong/cscope.vim.git' 
 " ctrlp
-Plugin 'ctrlp.vim'
+Plugin 'ctrlp.vim' 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" ºöÂÔÎÄ¼þ¹ýÂËclass
+set wildignore+=*.class
 Plugin 'tacahiroy/ctrlp-funky'
 let g:ctrlp_extensions = ['funky']
-
 " Solarized
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
+Plugin 'https://github.com/Lokaltog/vim-powerline.git'
+Plugin 'https://github.com/AndrewRadev/switch.vim.git'
+" Plugin 'https://github.com/spolu/dwm.vim.git'
+let g:Powerline_symbols = 'fancy'
 call vundle#end()            " required
 
 syntax enable
