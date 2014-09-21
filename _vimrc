@@ -4,40 +4,40 @@ source $VIMRUNTIME/vimrc_example.vim
 behave mswin
 set diffexpr=MyDiff()
 function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
+    let opt = '-a --binary '
+    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+    let arg1 = v:fname_in
+    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+    let arg2 = v:fname_new
+    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+    let arg3 = v:fname_out
+    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+    let eq = ''
+    if $VIMRUNTIME =~ ' '
+        if &sh =~ '\<cmd'
+            let cmd = '""' . $VIMRUNTIME . '\diff"'
+            let eq = '"'
+        else
+            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+        endif
     else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+        let cmd = $VIMRUNTIME . '\diff'
     endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
 if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 18
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-	" set guifont=Consolas:h11:cANSI
-    " set guifont=Inconsolata:h22:cANSI
-    " set guifont=Anonymous\ Pro:h22:cANSI
-    set guifont=BPmono:h22:cANSI
-  endif
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 18
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    elseif has("gui_win32")
+        " set guifont=Consolas:h11:cANSI
+        " set guifont=Inconsolata:h22:cANSI
+        " set guifont=Anonymous\ Pro:h22:cANSI
+        set guifont=BPmono:h22:cANSI
+    endif
 endif
 
 set nocompatible              " be iMproved, required
@@ -60,7 +60,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'https://github.com/wincent/command-t.git'
 
 " 主要方法： 
 " 复制后可以使用ctrl-p, ctrl-n,切换粘贴内容。 
@@ -127,6 +127,7 @@ Plugin 'minibufexpl.vim'
 " function that will bring up the next or previous buffer in the
 " current window, you can put the following into your .vimrc: 
 let g:miniBufExplMapCTabSwitchBufs = 1
+Plugin 'https://github.com/xolox/vim-notes.git'
 
 " xptemplate
 Plugin 'xptemplate'
@@ -145,16 +146,22 @@ Plugin 'tacahiroy/ctrlp-funky'
 let g:ctrlp_extensions = ['funky']
 " Solarized
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
-Plugin 'https://github.com/Lokaltog/vim-powerline.git'
+Plugin 'https://github.com/bling/vim-airline.git'
+Plugin 'https://github.com/vasconcelloslf/vim-interestingwords.git'
+" let g:Powerline_symbols = 'fancy'
 Plugin 'https://github.com/AndrewRadev/switch.vim.git'
+Plugin 'https://github.com/skammer/vim-css-color.git'
 " Plugin 'https://github.com/spolu/dwm.vim.git'
-let g:Powerline_symbols = 'fancy'
+" vim-autoformat
+Plugin 'https://github.com/Chiel92/vim-autoformat.git'
+" Plugin 'https://github.com/aklt/vim-substitute.git'
+Plugin 'https://github.com/jiqimaogou/vim-substitute.git'
 call vundle#end()            " required
-
 syntax enable
 set background=light
 " set background=dark
 colorscheme solarized
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -180,6 +187,7 @@ set softtabstop=4
 set shiftwidth=4
 " 当设置成 expandtab 时，缩进用空格来表示，noexpandtab 则是用制表符表示一个缩进。
 " set noexpandtab / expandtab
+set expandtab
 " Vim默认是对大小写敏感的，下面是让Vim忽略大小写的几种方法： 
 :set ignorecase
 " encoding 是 Vim 内部使用的字符编码方式。当我们设置了 encoding 之后，Vim 内部所有的 buffer、寄存器、脚本中的字符串等，全都使用这个编码。Vim 在工作的时候，如果编码方式与它的内部编码不一致，它会先把编码转换成内部编码。如果工作用的编码中含有无法转换为内部编码的字符，在这些字符就会丢失。因此，在选择 Vim 的内部编码的时候，一定要使用一种表现能力足够强的编码，以免影响正常工作。
@@ -194,3 +202,16 @@ language message zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 
 " 我们在Linux系统中，使用vi或vim中，要显示行号就使用命令：
 set nu  
+set helplang=cn
+autocmd BufWritePost * :Autoformat
+"Toggle Menu and Toolbar
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+            \set guioptions-=T <Bar>
+            \set guioptions-=m <bar>
+            \else <Bar>
+            \set guioptions+=T <Bar>
+            \set guioptions+=m <Bar>
+            \endif<CR>
+au GUIEnter * simalt ~x
